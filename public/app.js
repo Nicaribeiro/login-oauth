@@ -6,3 +6,13 @@ fetch("/api/me", { credentials: "same-origin" })
       ? `Sessão de ${user.email ?? user.displayName}.`
       : "Nenhuma sessão neste navegador.";
   });
+
+document.getElementById("logout-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  fetch("/oauth/logout", {
+    method: "POST",
+    credentials: "same-origin",
+  }).then(() => {
+    window.location.reload();
+  });
+});

@@ -1,0 +1,2 @@
+   Página inicial: https://login-oauth.pages.dev
+   URL de retorno: https://login-oauth.pages.dev/oauth/callback/github

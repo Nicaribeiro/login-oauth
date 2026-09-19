@@ -13,13 +13,13 @@
 
 ## Caso 2: state alterado
 
-**Preparação:** login completo com Google realizado normalmente; a URL de retorno (callback) foi localizada na aba Network do navegador e copiada, com um caractere do parâmetro state alterado antes de reenviar.
+**Preparação:** login com Google iniciado em uma janela comum, parando na tela "Escolha uma conta" sem concluir. A URL de autorização foi copiada da aba Network, um único caractere do parâmetro state foi alterado e a URL alterada foi aberta na mesma aba, com o cookie __Host-oauth-tx ainda presente.
 
-**Pedido enviado:** GET para /oauth/callback/google com o state modificado em relação ao original.
+**Pedido enviado:** após escolher a conta no Google, o navegador retornou para GET /oauth/callback/google com o state modificado e com o cookie de transação original.
 
 **Resultado esperado:** a rota de retorno recusa a resposta antes de trocar o código.
 
-**Resultado observado:** a rota respondeu "Transação ausente", confirmando que a tentativa foi recusada com sucesso.
+**Resultado observado:** a rota respondeu "State inválido" com status 400 (visto na aba Network), recusando a resposta antes da troca do código.
 
 
 ## Caso 3: reutilização da transação
@@ -52,7 +52,7 @@
 
 **Resultado esperado:** a rota deverá recusar a operação; a sessão original deve permanecer válida.
 
-**Resultado observado:** ao voltar para a aba de login-oauth.pages.dev, a sessão continuou válida ("Sessão de barbosanicoly2008@gmail.com"), confirmando que a rota recusou a operação vinda de outra origem.
+**Resultado observado:** ao voltar para a aba de login-oauth.pages.dev, a sessão continuou válida ("Sessão de [REMOVIDO]"), confirmando que a rota recusou a operação vinda de outra origem.
 
 
 ## Caso 6: reutilização do cookie revogado

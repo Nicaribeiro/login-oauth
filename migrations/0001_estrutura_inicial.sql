@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS oauth_transactions (
     id_hash TEXT PRIMARY KEY,
-    provider TEXT NOT NULL,
+    provider TEXT NOT NULL CHECK (provider IN ('google', 'github')),
     state_hash TEXT NOT NULL,
     nonce TEXT,
     code_verifier TEXT NOT NULL,

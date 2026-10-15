@@ -10,10 +10,10 @@ O workflow `ci.yml` verifica segredos versionados, aplica as migrações em SQLi
 
 Testar a migração em SQLite permite detectar erros de sintaxe e de estrutura antes de aplicar alterações no D1 remoto.
 
-- Execução aprovada: pendente.
-- Execução com falha proposital: pendente.
-- Linha do log com o erro de SQL: pendente.
-- Execução após a correção: pendente.
+- Execução aprovada: https://github.com/Nicaribeiro/login-oauth/actions/runs/38817667940
+- Execução com falha proposital: https://github.com/Nicaribeiro/login-oauth/actions/runs/38818809085
+- Linha do log: `Parse error near line 1: near "CREAT": syntax error`. Detalhes em [evidencias/01-ci-falha-e-correcao.md](evidencias/01-ci-falha-e-correcao.md).
+- Execução após a correção: https://github.com/Nicaribeiro/login-oauth/actions/runs/38818860101
 
 ## Tarefa 2 - Proteção da main
 

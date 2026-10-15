@@ -13,9 +13,14 @@ Trecho relevante do log da inferência: `API error: TypeError: Cannot use 'in' o
 
 As falhas da revisão acima são de configuração/integração. Não substituem a falha SQL proposital da Tarefa 1 nem a falha por remoção de permissão da Tarefa 3.
 
+## Capturas realizadas
+
+- [CI reprovado com erro SQL](02-ci-sql-invalido.jpg).
+- [CI aprovado após correção](03-ci-sql-corrigido.jpg).
+- [Links, commits e trecho do log](01-ci-falha-e-correcao.md).
+
 ## Capturas ainda necessárias
 
-- CI vermelho por SQL inválido e a linha de erro.
 - PR bloqueado pela proteção da main.
 - Mesmo PR liberado após correção.
 - Terminal com push direto recusado.
@@ -24,7 +29,7 @@ As falhas da revisão acima são de configuração/integração. Não substituem
 - Migração remota concluída e PRAGMA com a coluna titulo.
 - Merge sem mudança em migrations/ sem disparo de migrar.
 
-Nenhum print foi capturado nesta etapa. As capturas devem mostrar as telas reais dos testes, sem valores de tokens. O enunciado exige os links dos runs; capturas são complementares.
+Os dois primeiros prints foram capturados das telas reais do GitHub Actions. As demais capturas estão pendentes. O enunciado exige os links dos runs; capturas são complementares.
 
 ## Verificações locais
 

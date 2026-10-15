@@ -17,9 +17,9 @@ Testar a migração em SQLite permite detectar erros de sintaxe e de estrutura a
 
 ## Tarefa 2 - Proteção da main
 
-- Regra exigindo PR e o status `verificar`: pendente.
-- PR com CI reprovado e merge bloqueado: pendente.
-- Mesmo PR após a correção: pendente.
+- Regra `Proteção da main`, ID 25203077: ativa para `main`, exigindo PR e o status `verificar`.
+- PR com CI reprovado e estado `blocked`: https://github.com/Nicaribeiro/login-oauth/pull/2. Run: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820011100.
+- Mesmo PR após a correção: checks obrigatórios aprovados em https://github.com/Nicaribeiro/login-oauth/actions/runs/38820097514. Prints e limites da evidência em [evidencias/06-protecao-main.md](evidencias/06-protecao-main.md).
 - Saída de `git push` direto recusado: pendente.
 
 ## Tarefa 3 - Revisão por IA

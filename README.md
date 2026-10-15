@@ -6,7 +6,7 @@ Site com Cloudflare Pages Functions, D1 e autenticação com Google e GitHub.
 
 1. No Cloudflare, identifique o banco já vinculado como `DB` ao projeto Pages. Preencha seu nome e UUID em `wrangler.toml`; não crie outro banco para substituir o existente. Confirme também o nome do projeto Pages no campo `name`.
 2. Antes do merge, confira se as colunas das tabelas existentes correspondem a `migrations/0001_estrutura_inicial.sql`. O uso de `IF NOT EXISTS` mantém tabelas existentes, mas não corrige diferenças de esquema.
-3. Ao adotar `wrangler.toml` no Pages, mantenha também as configurações públicas e bindings já usados no painel, inclusive `PUBLIC_BASE_URL`, `GOOGLE_CLIENT_ID` e `GITHUB_CLIENT_ID`. Os segredos OAuth continuam nas configurações protegidas do Pages. Não versione segredos.
+3. O `wrangler.toml` configura a CLI para migrações D1. Sem `pages_build_output_dir`, o Pages continua usando a configuração de publicação e as variáveis/bindings do painel, preservando o login existente. Para desenvolvimento local use `npx wrangler pages dev public`. Não versione segredos.
 4. Em Settings > Secrets and variables > Actions, cadastre `COPILOT_PAT` (Copilot Requests, validade de 7 dias), `CLOUDFLARE_API_TOKEN` (D1 Edit no banco correto) e `CLOUDFLARE_ACCOUNT_ID`.
 5. Em Settings > Actions > General, permita Actions e a criação de comentários em PRs por GitHub Actions, se a configuração da conta exigir.
 6. Em Settings > Rules > Rulesets ou Branches, proteja `main`: exija PR e o check `verificar`, incluindo administradores, sem bypass que invalide a demonstração de push recusado.

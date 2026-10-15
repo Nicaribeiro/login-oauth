@@ -1,6 +1,5 @@
 name = "login-oauth"
 compatibility_date = "2026-10-15"
-pages_build_output_dir = "./public"
 
 [[d1_databases]]
 binding = "DB"

@@ -1,0 +1,36 @@
+name: verificar-d1
+
+on:
+  push:
+    branches: [teste-configuracao-d1]
+    paths: [.github/workflows/verificar-d1.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  consultar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Verifica presença dos segredos do Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          faltando=0
+          for chave in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID; do
+            if [ -z "${!chave}" ]; then
+              echo "::error::Segredo ausente: $chave"
+              faltando=1
+            fi
+          done
+          exit "$faltando"
+      - name: Consulta somente o esquema das tabelas existentes
+        run: npx --yes wrangler d1 execute DB --remote --command "SELECT name, sql FROM sqlite_master WHERE type IN ('table', 'index') AND name IN ('oauth_transactions', 'sessions', 'oauth_transactions_expiry', 'sessions_expiry', 'notas', 'd1_migrations')"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

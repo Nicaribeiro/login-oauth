@@ -20,6 +20,6 @@ Commit `21fa3ae9f1f555f3fc46a391b480933e62f6a616`, na mesma ramificação: `CREA
 
 O navegador está na conta Beatrys-lira, sem permissão de escrita neste repositório. Por isso os prints comprovam os checks e seu estado Required, mas não mostram um botão de merge operacional para a proprietária. Não foi tentado merge.
 
-## Ainda pendente
+## Push direto recusado
 
-A saída real de `git push` direto na main recusado precisa ser registrada com autenticação da proprietária. Uma recusa de API não substitui essa evidência exigida pelo enunciado.
+A demonstração foi concluída com um git push real de commit vazio pelo GitHub Actions, recusado por GH013 e pelas regras de PR e check obrigatório. Veja [saída e execução](08-push-direto-recusado.md).

@@ -20,15 +20,15 @@ Testar a migração em SQLite permite detectar erros de sintaxe e de estrutura a
 - Regra `Proteção da main`, ID 25203077: ativa para `main`, exigindo PR e o status `verificar`.
 - PR com CI reprovado e estado `blocked`: https://github.com/Nicaribeiro/login-oauth/pull/2. Run: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820011100.
 - Mesmo PR após a correção: checks obrigatórios aprovados em https://github.com/Nicaribeiro/login-oauth/actions/runs/38820097514. Prints e limites da evidência em [evidencias/06-protecao-main.md](evidencias/06-protecao-main.md).
-- Saída de `git push` direto recusado: pendente.
+- Saída real de `git push` recusado por GH013: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820633564. [Log e print](evidencias/08-push-direto-recusado.md).
 
 ## Tarefa 3 - Revisão por IA
 
-- PR com SQL vulnerável e comentário da IA: pendente.
-- Correção com `prepare(...).bind(...)` e nova revisão: pendente.
-- Execução sem `pull-requests: write` e erro de permissão: pendente.
-- Restauração da permissão: pendente.
-- Afirmação incorreta ou irrelevante da IA e explicação: pendente de uma revisão real.
+- PR e comentário sobre SQL vulnerável: https://github.com/Nicaribeiro/login-oauth/pull/3#issuecomment-6204026550
+- Correção e nova revisão: https://github.com/Nicaribeiro/login-oauth/pull/3#issuecomment-6204057207
+- Falha sem `pull-requests: write`: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820970380. Erro: `GraphQL: Resource not accessible by integration (addComment)`.
+- Permissão restaurada no commit `6bd2ccaa973c9c6bafc6279d0f79b31be8658d2f` da ramificação de teste.
+- A IA propôs um menu de correções e commits que o workflow não implementa. Esse conteúdo é irrelevante para uma revisão automática sem interação; não comprova uma funcionalidade de correção. [Comentários, análise e prints](evidencias/12-revisao-ia.md).
 
 ## Tarefa 4 - Migração após o merge
 
@@ -54,4 +54,4 @@ A declaração limita o `GITHUB_TOKEN` ao necessário: leitura do código e escr
 
 ### 4. A IA substitui o status check?
 
-Não. O CI executa verificações reproduzíveis, enquanto a IA pode produzir avaliações incorretas ou irrelevantes e seu comentário não exige a correção dos problemas encontrados. A conclusão deve ser complementada com o exemplo real observado na Tarefa 3, ainda pendente.
+Não. O CI executa verificações reproduzíveis, enquanto a IA pode produzir avaliações incorretas ou irrelevantes e seu comentário não exige a correção dos problemas encontrados. Na Tarefa 3, a IA propôs um menu de correções e commits que o workflow não executa, mostrando que parte da resposta pode ser irrelevante mesmo quando identifica corretamente o SQL vulnerável.

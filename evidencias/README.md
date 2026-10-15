@@ -1,41 +1,22 @@
 # Evidências da avaliação
 
-## Testes executados
+- [Tarefa 1: CI vermelho e verde, commits e log](01-ci-falha-e-correcao.md).
+- [Print: SQL inválido](02-ci-sql-invalido.jpg).
+- [Print: SQL corrigido](03-ci-sql-corrigido.jpg).
+- [Tarefa 2: proteção da main](06-protecao-main.md).
+- [Print: checks obrigatórios reprovados](04-pr-ci-bloqueado.jpg).
+- [Print: checks obrigatórios aprovados](05-pr-ci-corrigido.jpg).
+- [Push direto recusado: log e execução](08-push-direto-recusado.md).
+- [Print: push recusado por GH013](07-push-direto-recusado.jpg).
+- [Tarefa 3: duas revisões, permissão e crítica à IA](12-revisao-ia.md).
+- [Print: revisão do SQL vulnerável](09-ia-sql-vulneravel.jpg).
+- [Print: revisão após bind](10-ia-sql-corrigido.jpg).
+- [Print: erro sem permissão de comentário](11-ia-sem-permissao.jpg).
 
-| Teste | Resultado | Execução |
-| --- | --- | --- |
-| CI do PR: segredos, migrações SQLite e HTMLHint | Aprovado | https://github.com/Nicaribeiro/login-oauth/actions/runs/38817667940 |
-| CI após configuração do banco D1 | Aprovado | https://github.com/Nicaribeiro/login-oauth/actions/runs/38818041876 |
-| Revisão IA antes do cadastro do token | Falha na verificação de configuração | https://github.com/Nicaribeiro/login-oauth/actions/runs/38817668038 |
-| Revisão IA após cadastro do token, tentativa 2 | Segredo presente; falha na ação de inferência | https://github.com/Nicaribeiro/login-oauth/actions/runs/38818041918/attempts/2 |
+## Pendente
 
-Trecho relevante do log da inferência: `API error: TypeError: Cannot use 'in' operator to search for 'choices' in OK`.
+A Tarefa 4 depende dos segredos CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID. O diagnóstico em https://github.com/Nicaribeiro/login-oauth/actions/runs/38820945011 confirmou que ambos estavam ausentes; nenhuma alteração remota foi aplicada nessa verificação.
 
-As falhas da revisão acima são de configuração/integração. Não substituem a falha SQL proposital da Tarefa 1 nem a falha por remoção de permissão da Tarefa 3.
+Ainda faltam a migração 0002 por PR, sua confirmação remota por PRAGMA e o merge sem migrations/ sem disparar migrar. A entrega final deve conter os links reais dessas execuções.
 
-## Capturas realizadas
-
-- [CI reprovado com erro SQL](02-ci-sql-invalido.jpg).
-- [CI aprovado após correção](03-ci-sql-corrigido.jpg).
-- [Links, commits e trecho do log](01-ci-falha-e-correcao.md).
-
-## Capturas ainda necessárias
-
-- PR bloqueado pela proteção da main.
-- Mesmo PR liberado após correção.
-- Terminal com push direto recusado.
-- Dois comentários reais da IA: consulta vulnerável e consulta corrigida.
-- Log da falha ao comentar sem pull-requests: write.
-- Migração remota concluída e PRAGMA com a coluna titulo.
-- Merge sem mudança em migrations/ sem disparo de migrar.
-
-Os dois primeiros prints foram capturados das telas reais do GitHub Actions. As demais capturas estão pendentes. O enunciado exige os links dos runs; capturas são complementares.
-
-## Verificações locais
-
-- Arquivos YAML e TOML analisados sem erro de sintaxe.
-- Migração inicial aplicada em SQLite em memória.
-- Reaplicação da migração preservou uma sessão de teste.
-- SQL inválido produziu erro de sintaxe local; não é evidência de run vermelho.
-- Adição futura da coluna titulo validada localmente; ainda não aplicada no D1 remoto.
-- HTMLHint: 1 arquivo analisado, sem erros.
+O enunciado exige links dos runs; os prints são complementares e mostram telas reais do GitHub.

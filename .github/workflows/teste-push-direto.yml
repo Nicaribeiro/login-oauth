@@ -1,0 +1,39 @@
+name: teste-push-direto
+
+on:
+  push:
+    branches: [teste-push-protegido]
+    paths: [.github/workflows/teste-push-direto.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  comprovar-recusa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Prepara commit vazio para o teste
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit --allow-empty -m 'Teste de push direto bloqueado pela proteção'
+      - name: Confirma que a regra recusa o push direto
+        shell: bash
+        run: |
+          set +e
+          git push origin HEAD:refs/heads/main > "$RUNNER_TEMP/push.log" 2>&1
+          resultado=$?
+          set -e
+          cat "$RUNNER_TEMP/push.log"
+          if [ "$resultado" -eq 0 ]; then
+            echo '::error::O push foi aceito; a proteção precisa ser revisada.'
+            exit 1
+          fi
+          if ! grep -Eq 'GH013|GH006|Changes must be made through a pull request|protected branch' "$RUNNER_TEMP/push.log"; then
+            echo '::error::O push falhou por outro motivo; isso não comprova proteção da main.'
+            exit 1
+          fi
+          echo 'Push direto recusado pela regra de proteção da main.'

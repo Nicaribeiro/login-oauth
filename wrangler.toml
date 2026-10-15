@@ -1,0 +1,9 @@
+name = "login-oauth"
+compatibility_date = "2026-10-15"
+pages_build_output_dir = "./public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "PREENCHER_NOME_DO_BANCO_EXISTENTE"
+database_id = "PREENCHER_ID_DO_BANCO_EXISTENTE"
+migrations_dir = "migrations"

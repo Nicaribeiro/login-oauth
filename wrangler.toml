@@ -4,6 +4,6 @@ pages_build_output_dir = "./public"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "PREENCHER_NOME_DO_BANCO_EXISTENTE"
-database_id = "PREENCHER_ID_DO_BANCO_EXISTENTE"
+database_name = "oauth-sessions-nicoly"
+database_id = "0a27998d-e134-4d37-9d6e-f36d3a68f992"
 migrations_dir = "migrations"

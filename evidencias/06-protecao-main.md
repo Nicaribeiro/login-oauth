@@ -18,8 +18,25 @@ Commit `21fa3ae9f1f555f3fc46a391b480933e62f6a616`, na mesma ramificação: `CREA
 - Run aprovado: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820097514
 - [Print dos checks obrigatórios aprovados](05-pr-ci-corrigido.jpg).
 
-O navegador está na conta Beatrys-lira, sem permissão de escrita neste repositório. Por isso os prints comprovam os checks e seu estado Required, mas não mostram um botão de merge operacional para a proprietária. Não foi tentado merge.
+Esses prints antigos foram complementados em 16/10/2026 pelo teste abaixo, com registro direto do botão de merge.
 
 ## Push direto recusado
 
 A demonstração foi concluída com um git push real de commit vazio pelo GitHub Actions, recusado por GH013 e pelas regras de PR e check obrigatório. Veja [saída e execução](08-push-direto-recusado.md).
+
+## Complemento: bloqueio e liberação no mesmo PR
+
+PR temporário: https://github.com/Nicaribeiro/login-oauth/pull/9
+
+- Branch: `validacao-entrega-nota10`.
+- Commit com erro: `fc3d2eba494b12f6064fe4bddd451e7cb9980734`.
+- CI de PR reprovado: https://github.com/Nicaribeiro/login-oauth/actions/runs/38900400513
+- Log: `Parse error near line 1: near "CREAT": syntax error`.
+- A API confirmou `mergeable_state: blocked`; o navegador confirmou `Merge pull request` desabilitado.
+- [Print do botão bloqueado](18-pr-bloqueado-nota10.jpg).
+- Correção na mesma branch: `ee075f13aba4dbb5938a4057e81bdd5c99153dbb`, substituindo CREAT por CREATE.
+- CI de PR aprovado: https://github.com/Nicaribeiro/login-oauth/actions/runs/38900539327
+- CI de push aprovado: https://github.com/Nicaribeiro/login-oauth/actions/runs/38900535870
+- [Print após a correção](19-pr-liberado-nota10.jpg).
+
+O PR é exclusivamente de teste e não deve ser integrado. A migração de demonstração e o workflow de validação isolada não fazem parte da entrega do PR #8.

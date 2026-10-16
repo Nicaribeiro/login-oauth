@@ -29,3 +29,5 @@ Os links das execuções exigidos pelo enunciado estão em AVALIACAO.md. Os prin
 - [Print: mesmo PR com merge liberado](19-pr-liberado-nota10.jpg).
 - [Print: resumo das migrações por IA em SQLite](20-resumo-ia-sqlite.jpg).
 - [Resumo por IA: teste e limites](21-resumo-migracoes-ia.md).
+
+- [Print: resumo aprovado com entrada filtrada](22-resumo-ia-filtrado.jpg).

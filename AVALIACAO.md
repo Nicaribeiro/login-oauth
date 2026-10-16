@@ -53,7 +53,7 @@ O PR #7 incluiu um PDF que o Git interpretou como texto. Bytes NUL no prompt imp
 
 Implementado em migrar.yml: log da aplicação, actions/ai-inference e publicação em `$GITHUB_STEP_SUMMARY`. Testes reais em SQLite isolado passaram e publicaram o resumo:
 https://github.com/Nicaribeiro/login-oauth/actions/runs/38900393218 e
-https://github.com/Nicaribeiro/login-oauth/actions/runs/38900535851.
+https://github.com/Nicaribeiro/login-oauth/actions/runs/38900535851. A versão final, com log filtrado, também passou: https://github.com/Nicaribeiro/login-oauth/actions/runs/38900892907.
 
 [Print](evidencias/20-resumo-ia-sqlite.jpg) e [implementação, evidências e limites](evidencias/21-resumo-migracoes-ia.md). O novo step ainda não foi executado após uma nova migração D1 remota; não reivindicamos essa evidência. O bônus é opcional e a rubrica limita a nota total a 10.
 

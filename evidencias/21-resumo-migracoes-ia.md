@@ -2,7 +2,7 @@
 
 ## Implementação
 
-O workflow `migrar.yml` mantém o gatilho de push na main com filtro `migrations/**`, as permissões e o controle de concorrência. A aplicação remota usa pipefail e tee para capturar o log sem esconder erros do Wrangler. Após a confirmação do esquema, a ação oficial actions/ai-inference resume o log e o resultado é escrito em `$GITHUB_STEP_SUMMARY`.
+O workflow `migrar.yml` mantém o gatilho de push na main com filtro `migrations/**`, as permissões e o controle de concorrência. A aplicação remota usa pipefail e tee para capturar o log sem esconder erros do Wrangler. Após a confirmação do esquema, a ação oficial actions/ai-inference recebe apenas os nomes de arquivos SQL existentes e confirmados como aplicados, filtrados localmente a partir do log e o resultado é escrito em `$GITHUB_STEP_SUMMARY`.
 
 O resumo é informativo: a aplicação e o PRAGMA continuam sendo a evidência determinística da migração. Usa-se COPILOT_PAT via secrets; valores de segredos não são incluídos no prompt.
 
@@ -14,6 +14,14 @@ O resumo é informativo: a aplicação e o PRAGMA continuam sendo a evidência d
 - A inferência terminou com sucesso e o resumo apareceu na página da execução.
 - A resposta confirmou as migrações 0001 e 0002 e explicitou que não houve acesso ao D1 remoto.
 - [Print do resumo publicado](20-resumo-ia-sqlite.jpg).
+
+## Validação final da entrada filtrada
+
+Execução aprovada: https://github.com/Nicaribeiro/login-oauth/actions/runs/38900892907
+
+[Print do resumo com entrada filtrada](22-resumo-ia-filtrado.jpg). A lista contém 0001, 0002 e a migração 9999 de demonstração existente exclusivamente na branch de teste. Nenhum desses testes alterou o D1 remoto.
+
+Verificações locais: YAML e Bash válidos; erro controlado do Wrangler continua reprovando o step mesmo com tee; o filtro descarta texto arbitrário e nomes de arquivos inexistentes. O Copilot é instalado antes de exportar credenciais Cloudflare e a etapa de inferência recebe essas duas variáveis vazias.
 
 ## Limite da validação
 

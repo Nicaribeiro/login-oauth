@@ -40,3 +40,5 @@ PR temporário: https://github.com/Nicaribeiro/login-oauth/pull/9
 - [Print após a correção](19-pr-liberado-nota10.jpg).
 
 O PR é exclusivamente de teste e não deve ser integrado. A migração de demonstração e o workflow de validação isolada não fazem parte da entrega do PR #8.
+
+Na verificação final, a API confirmou `mergeable_state: clean` e o navegador confirmou o botão habilitado (`isEnabled: true`), após registrar o mesmo botão desabilitado antes da correção. O PR #9 foi encerrado sem merge após o teste.

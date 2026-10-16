@@ -13,10 +13,12 @@
 - [Print: revisão após bind](10-ia-sql-corrigido.jpg).
 - [Print: erro sem permissão de comentário](11-ia-sem-permissao.jpg).
 
-## Pendente
+## Migração remota e filtro paths
 
-A Tarefa 4 depende dos segredos CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID. O diagnóstico em https://github.com/Nicaribeiro/login-oauth/actions/runs/38820945011 confirmou que ambos estavam ausentes; nenhuma alteração remota foi aplicada nessa verificação.
+- [Tarefa 4: migração e saída do PRAGMA](13-migracao-d1.md).
+- [Print: migração remota aprovada](14-migracao-d1-concluida.jpg).
+- [Print: coluna titulo no PRAGMA](15-pragma-coluna-titulo.jpg).
+- [Merge sem migrações: comprovação do filtro](17-filtro-paths.md).
+- [Print: histórico da main sem novo migrar](16-merge-sem-migracoes.jpg).
 
-Ainda faltam a migração 0002 por PR, sua confirmação remota por PRAGMA e o merge sem migrations/ sem disparar migrar. A entrega final deve conter os links reais dessas execuções.
-
-O enunciado exige links dos runs; os prints são complementares e mostram telas reais do GitHub.
+Os links das execuções exigidos pelo enunciado estão em AVALIACAO.md. Os prints são complementares e mostram telas reais do GitHub.

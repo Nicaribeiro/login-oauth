@@ -2,7 +2,7 @@
 
 ## Situação da entrega
 
-Em preparação. As evidências abaixo devem ser preenchidas com execuções reais; a criação dos arquivos não comprova a conclusão da avaliação.
+As quatro tarefas foram executadas. Os links abaixo apontam para runs reais, PRs e prints reunidos em evidencias/. Os PRs de teste foram encerrados sem merge; a preparação e a migração foram incorporadas à main.
 
 ## Tarefa 1 - CI
 
@@ -27,16 +27,16 @@ Testar a migração em SQLite permite detectar erros de sintaxe e de estrutura a
 - PR e comentário sobre SQL vulnerável: https://github.com/Nicaribeiro/login-oauth/pull/3#issuecomment-6204026550
 - Correção e nova revisão: https://github.com/Nicaribeiro/login-oauth/pull/3#issuecomment-6204057207
 - Falha sem `pull-requests: write`: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820970380. Erro: `GraphQL: Resource not accessible by integration (addComment)`.
-- Permissão restaurada no commit `6bd2ccaa973c9c6bafc6279d0f79b31be8658d2f` da ramificação de teste.
+- Permissão restaurada no commit `6bd2ccaa973c9c6bafc6279d0f79b31be8658d2f`; execução aprovada: https://github.com/Nicaribeiro/login-oauth/actions/runs/38821140086.
 - A IA propôs um menu de correções e commits que o workflow não implementa. Esse conteúdo é irrelevante para uma revisão automática sem interação; não comprova uma funcionalidade de correção. [Comentários, análise e prints](evidencias/12-revisao-ia.md).
 
 ## Tarefa 4 - Migração após o merge
 
-- PR separado com `0002_adiciona_coluna.sql`: pendente.
-- Execução de `migrar` após o merge: pendente.
-- Saída de `PRAGMA table_info(notas)` com a nova coluna: pendente.
-- Segundo merge sem modificar `migrations/`: pendente.
-- Confirmação de que esse segundo merge não disparou `migrar`: pendente.
+- PR separado com `0002_adiciona_coluna.sql`, mesclado: https://github.com/Nicaribeiro/login-oauth/pull/4
+- Execução de `migrar` após o merge: https://github.com/Nicaribeiro/login-oauth/actions/runs/38828061519
+- `PRAGMA table_info(notas)` confirmou `titulo TEXT`, cid 4, no step Confirma estrutura de notas do run acima. [Saída e print](evidencias/13-migracao-d1.md).
+- Segundo merge sem modificar `migrations/`: https://github.com/Nicaribeiro/login-oauth/pull/5, commit `bf9af8e7258f30daf66d4f0f4a93d92bafccb78f`.
+- O segundo merge disparou somente CI: https://github.com/Nicaribeiro/login-oauth/actions/runs/38828283145. A consulta de runs por esse SHA não contém `migrar`. [Prova e print](evidencias/17-filtro-paths.md).
 
 ## Perguntas
 

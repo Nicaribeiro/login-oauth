@@ -36,6 +36,9 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
+          atributos="$(git rev-parse --git-path info/attributes)"
+          mkdir -p "$(dirname "$atributos")"
+          printf '*.pdf binary\n' >> "$atributos"
           git diff "$BASE_SHA...$HEAD_SHA" -- functions/ > "$RUNNER_TEMP/alteracoes.diff"
           git diff "$BASE_SHA...$HEAD_SHA" -- . ':!functions/**' >> "$RUNNER_TEMP/alteracoes.diff"
           {

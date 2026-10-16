@@ -22,3 +22,10 @@
 - [Print: histórico da main sem novo migrar](16-merge-sem-migracoes.jpg).
 
 Os links das execuções exigidos pelo enunciado estão em AVALIACAO.md. Os prints são complementares e mostram telas reais do GitHub.
+
+## Complementos de 16/10/2026
+
+- [Print: botão de merge bloqueado no PR #9](18-pr-bloqueado-nota10.jpg).
+- [Print: mesmo PR com merge liberado](19-pr-liberado-nota10.jpg).
+- [Print: resumo das migrações por IA em SQLite](20-resumo-ia-sqlite.jpg).
+- [Resumo por IA: teste e limites](21-resumo-migracoes-ia.md).

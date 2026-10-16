@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 22
+      - name: Instala Copilot CLI para o resumo
+        run: npm install -g @github/copilot
       - name: Verifica configuração do D1
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -54,8 +56,6 @@ jobs:
           npx --yes wrangler d1 migrations apply DB --remote 2>&1 | tee "$RUNNER_TEMP/migracoes-aplicadas.log"
       - name: Confirma estrutura de notas
         run: npx --yes wrangler d1 execute DB --remote --command "PRAGMA table_info(notas)"
-      - name: Instala Copilot CLI para o resumo
-        run: npm install -g @github/copilot
       - name: Prepara resumo das migrações
         run: |
           python - <<'PY'
@@ -88,6 +88,8 @@ jobs:
         uses: actions/ai-inference@41caef41a74eb26f6d0c6b1e9941d691588e0b2b
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+          CLOUDFLARE_API_TOKEN: ''
+          CLOUDFLARE_ACCOUNT_ID: ''
         with:
           model: ''
           prompt-file: ${{ runner.temp }}/resumo-migracoes.txt

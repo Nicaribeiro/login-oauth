@@ -34,4 +34,9 @@ O step Aplica migrações no D1 remoto registrou 0002_adiciona_coluna.sql como a
 
 ## Teste do filtro paths
 
-Este arquivo documental é alterado sem tocar migrations/. O merge de seu PR será usado para comprovar que migrar não roda quando não existem mudanças em migrations/.
+O PR #5 alterou somente este arquivo. Seu merge disparou CI e não disparou migrar. Veja [comprovação do filtro paths](17-filtro-paths.md).
+
+## Prints
+
+- [Migração D1 aprovada](14-migracao-d1-concluida.jpg).
+- [Coluna titulo no resultado do PRAGMA](15-pragma-coluna-titulo.jpg).

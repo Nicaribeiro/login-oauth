@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Procura segredos versionados
+        shell: bash
+        run: |
+          set +e
+          git grep -IlE "GOCSPX-|client_secret *= *['\"][^'\"]+" -- . ':!*.md' ':!.github/workflows/ci.yml'
+          resultado=$?
+          set -e
+          if [ "$resultado" -eq 0 ]; then
+            echo "::error::Possível segredo no repositório. Revise os arquivos indicados sem publicar seus valores."
+            exit 1
+          elif [ "$resultado" -ne 1 ]; then
+            echo "::error::Falha ao executar a busca de segredos."
+            exit "$resultado"
+          fi
+      - name: Aplica as migrações D1 em um SQLite local
+        shell: bash
+        run: |
+          shopt -s nullglob
+          arquivos=(migrations/*.sql)
+          if [ "${#arquivos[@]}" -eq 0 ]; then
+            echo "::error::Nenhuma migração SQL encontrada."
+            exit 1
+          fi
+          for f in "${arquivos[@]}"; do
+            echo "Aplicando $f"
+            sqlite3 -bail teste.db < "$f"
+          done
+          sqlite3 teste.db ".tables"
+      - name: Valida HTML
+        run: npx --yes htmlhint "**/*.html"

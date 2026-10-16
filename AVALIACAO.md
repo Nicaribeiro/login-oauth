@@ -1,0 +1,57 @@
+# Avaliação de GitHub Actions
+
+## Situação da entrega
+
+Em preparação. As evidências abaixo devem ser preenchidas com execuções reais; a criação dos arquivos não comprova a conclusão da avaliação.
+
+## Tarefa 1 - CI
+
+O workflow `ci.yml` verifica segredos versionados, aplica as migrações em SQLite local e valida o HTML. A busca imprime somente nomes de arquivos para não expor possíveis segredos no log.
+
+Testar a migração em SQLite permite detectar erros de sintaxe e de estrutura antes de aplicar alterações no D1 remoto.
+
+- Execução aprovada: https://github.com/Nicaribeiro/login-oauth/actions/runs/38817667940
+- Execução com falha proposital: https://github.com/Nicaribeiro/login-oauth/actions/runs/38818809085
+- Linha do log: `Parse error near line 1: near "CREAT": syntax error`. Detalhes em [evidencias/01-ci-falha-e-correcao.md](evidencias/01-ci-falha-e-correcao.md).
+- Execução após a correção: https://github.com/Nicaribeiro/login-oauth/actions/runs/38818860101
+
+## Tarefa 2 - Proteção da main
+
+- Regra `Proteção da main`, ID 25203077: ativa para `main`, exigindo PR e o status `verificar`.
+- PR com CI reprovado e estado `blocked`: https://github.com/Nicaribeiro/login-oauth/pull/2. Run: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820011100.
+- Mesmo PR após a correção: checks obrigatórios aprovados em https://github.com/Nicaribeiro/login-oauth/actions/runs/38820097514. Prints e limites da evidência em [evidencias/06-protecao-main.md](evidencias/06-protecao-main.md).
+- Saída real de `git push` recusado por GH013: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820633564. [Log e print](evidencias/08-push-direto-recusado.md).
+
+## Tarefa 3 - Revisão por IA
+
+- PR e comentário sobre SQL vulnerável: https://github.com/Nicaribeiro/login-oauth/pull/3#issuecomment-6204026550
+- Correção e nova revisão: https://github.com/Nicaribeiro/login-oauth/pull/3#issuecomment-6204057207
+- Falha sem `pull-requests: write`: https://github.com/Nicaribeiro/login-oauth/actions/runs/38820970380. Erro: `GraphQL: Resource not accessible by integration (addComment)`.
+- Permissão restaurada no commit `6bd2ccaa973c9c6bafc6279d0f79b31be8658d2f` da ramificação de teste.
+- A IA propôs um menu de correções e commits que o workflow não implementa. Esse conteúdo é irrelevante para uma revisão automática sem interação; não comprova uma funcionalidade de correção. [Comentários, análise e prints](evidencias/12-revisao-ia.md).
+
+## Tarefa 4 - Migração após o merge
+
+- PR separado com `0002_adiciona_coluna.sql`: pendente.
+- Execução de `migrar` após o merge: pendente.
+- Saída de `PRAGMA table_info(notas)` com a nova coluna: pendente.
+- Segundo merge sem modificar `migrations/`: pendente.
+- Confirmação de que esse segundo merge não disparou `migrar`: pendente.
+
+## Perguntas
+
+### 1. Por que o CI roda duas vezes com PR aberto?
+
+O push dispara uma execução na ramificação e também atualiza o PR, disparando o evento `pull_request`. A execução de PR testa o commit de merge simulado com a base; quando existem checks de push e de PR com o mesmo nome, ambos precisam passar para satisfazer o check obrigatório.
+
+### 2. Por que forks não recebem COPILOT_PAT?
+
+O código de um fork pode ter sido escrito por alguém sem permissão no repositório de destino, por isso os segredos não são disponibilizados a esse workflow. Isso impede que um PR altere comandos para roubar o token ou enviá-lo a um servidor externo.
+
+### 3. Por que declarar permissions?
+
+A declaração limita o `GITHUB_TOKEN` ao necessário: leitura do código e escrita de comentários no PR. Assim, o funcionamento não depende das permissões padrão do repositório e o token não recebe acesso desnecessário.
+
+### 4. A IA substitui o status check?
+
+Não. O CI executa verificações reproduzíveis, enquanto a IA pode produzir avaliações incorretas ou irrelevantes e seu comentário não exige a correção dos problemas encontrados. Na Tarefa 3, a IA propôs um menu de correções e commits que o workflow não executa, mostrando que parte da resposta pode ser irrelevante mesmo quando identifica corretamente o SQL vulnerável.

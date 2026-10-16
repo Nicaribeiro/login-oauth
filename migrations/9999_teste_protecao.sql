@@ -1,1 +1,1 @@
-CREAT TABLE teste_protecao (id INTEGER);
+CREATE TABLE teste_protecao (id INTEGER);
